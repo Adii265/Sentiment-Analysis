@@ -1,0 +1,81 @@
+{% extends "Historie/base.html" %} 
+{% block content %}
+<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+			<h1 id="colorlib-logo"><a href="../../Historie">Historie<span>.</span></a></h1>
+			
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+                    <li class="colorlib-active"><a href="../index">Home</a></li>
+                    <li><a href="../sample">Sample</a></li>
+                    <li ><a href="../about" target = "_blank">About</a></li>
+                    <li><a href="../contact" target = "_blank">Contact</a></li>
+                </ul>
+			</nav>
+
+			<div class="colorlib-footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                <ul>
+                    <li><a href="#" target = "_blank"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#" target = "_blank"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#" target = "_blank"><i class="icon-instagram"></i></a></li>
+                    <li><a href="#" target = "_blank"><i class="icon-linkedin"></i></a></li>
+                </ul>
+            </div>
+		</aside> <!-- END COLORLIB-ASIDE -->
+
+
+		<div class="container">
+			
+		<div id="colorlib-main" >
+			<div class="row block-9">
+	          <div class="col-md-6 order-md-last pr-md-5">
+	            <form name = "form" action="{% url 'index' %}" method="POST">{% csrf_token %}
+	            	<br><br><br>
+	            	<label>Author 	
+	            		<span class="badge badge-pill badge-secondary" ngbTooltip="This field requires the author of the content" >i</span>
+	            	</label>
+	              	<div class="form-group">
+	                	<input type="text" class="form-control" placeholder="Author" name="author">
+	              	</div>
+	              	<label>Content
+	              		<span class="badge badge-pill badge-secondary" ngbTooltip="This field requires the Content" >i</span> </label>
+                    <div class="form-group">
+	  	            	<textarea cols="30" rows="7" class="form-control" placeholder="Content"  name="content"></textarea>
+	              	</div>
+	              	<div class="form-group">
+	                	<input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
+	                	<button type="button" class="btn btn-primary py-3 px-5" data-toggle="modal" data-target="#exampleModalCenter">
+  						<span class="sr-only">Loading...</span>Output
+						</button>
+
+					<!-- Modal -->
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ 	 						<div class="modal-dialog modal-dialog-centered" role="document">
+    							<div class="modal-content">
+      								<div class="modal-header">
+        								<h5 class="modal-title" id="exampleModalLongTitle">Author: <strong>{{author}}</strong></h5>
+        								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          									<span aria-hidden="true">&times;</span>
+        								</button>
+      								</div>
+      								<div class="modal-body">
+        								Content : <strong>{{content}}</strong><br>
+										Emotion of the text : <strong>{{sentiment}}</strong>
+      								</div>
+      								<div class="modal-footer">
+        								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        							
+      								</div>
+    							</div>
+  							</div>
+						</div>
+	              	</div>
+	            </form>
+	          </div>
+	        </div>
+		</div>
+	</div>
+	</div>
+{% endblock content %}

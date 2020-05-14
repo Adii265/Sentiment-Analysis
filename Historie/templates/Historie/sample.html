@@ -1,0 +1,88 @@
+{% extends "Historie/base.html" %} 
+{% block content %}
+<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+			<h1 id="colorlib-logo"><a href="../../Historie">Historie<span>.</span></a></h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+            <li ><a href="../index">Home</a></li>
+            <li class="colorlib-active"><a href="../sample">Sample</a></li>
+            <li ><a href="../about" target = "_blank">About</a></li>
+            <li><a href="../contact" target = "_blank">Contact</a></li>
+        </ul>
+			</nav>
+
+			<div class="colorlib-footer">
+        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+        <ul>
+          <li><a href="#" target = "_blank"><i class="icon-facebook"></i></a></li>
+          <li><a href="#" target = "_blank"><i class="icon-twitter"></i></a></li>
+          <li><a href="#" target = "_blank"><i class="icon-instagram"></i></a></li>
+          <li><a href="#" target = "_blank"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+		</aside> <!-- END COLORLIB-ASIDE -->
+		<div id="colorlib-main" >
+      <div class="container" >
+        <br>
+        <div class="col-md-12 mb-4" style="color:black;margin-left: 3%">
+            <h2 class="h2 font-weight-bold">Sample</h2>
+        </div>
+        <div class="row d-flex mb-7 contact-info" >
+            <img src="../../static/Historie/Dash/images/bg5.png"  class="img-fluid">
+        </div>
+            
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(../../static/Historie/Dash/images/bg_4.jpg);" data-stellar-background-ratio="1">
+              <table style="color:black;margin-left: 3%">
+                <div class="w-500"></div>
+                    <div class="col-md-10" style="color:black">
+                <tr>
+                  <th><span>&nbsp &nbspAuthor&nbsp &nbsp</span></th>
+                  <th><span>&nbsp &nbspContent&nbsp &nbsp</span></th>
+                  <th><span>&nbsp &nbspSentiment&nbsp &nbsp</span></th>
+                </tr>
+              {% if latest_article_list %}
+                {% for i in latest_article_list %}
+                      <tr>
+                        <td><span>&nbsp &nbsp{{i.author}}&nbsp &nbsp</span></td>
+                        <td><span>&nbsp &nbsp{{ i.content }}&nbsp &nbsp</span></td>
+                        <td><span>&nbsp &nbsp{{i.sentiment}}&nbsp &nbsp</span></p>
+                      </tr>
+                    </div>
+                {% endfor %}
+              {% else %}
+              <p>No documents are available.</p>
+              {% endif %}
+            </table>
+
+
+            <div class="col-lg-12 col-md-12">
+      <div class="card card-chart">
+        <div class="card-header">
+          <!-- <h5 class="card-category">Email Statistics</h5> -->
+          <h4 class="card-title">Heart Attacks Reported</h4>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <canvas baseChart id="barChartSimpleGradientsNumbers" [datasets]="lineChartGradientsNumbersData"
+              [labels]="lineChartGradientsNumbersLabels" [colors]="lineChartGradientsNumbersColors"
+              [options]="lineChartGradientsNumbersOptions" [chartType]="lineChartGradientsNumbersType"
+              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="now-ui-icons ui-2_time-alarm"></i>Just Now
+
+          </div>
+        </div>
+      </div>
+    </div>
