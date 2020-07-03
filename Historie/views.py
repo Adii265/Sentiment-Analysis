@@ -5,7 +5,7 @@ from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from Historie.forms import Doc_Form
-from Historie.prog1 import cal
+from Historie.paragraph import sentiment_analysis
 
 
 def index(request):
@@ -27,22 +27,25 @@ def ContactView(request):
     return render(request,'Historie/contact.html',)
 
 def fill_doc(request):
+	#print(6)
 	sentiment = " "
 	content = " "
+	author = " "
+	#print(request.method == "POST")
 	if request.method == "POST":
 		My_Doc_Form = Doc_Form(request.POST)
 		if My_Doc_Form.is_valid():
 			author = My_Doc_Form.cleaned_data['author']
 			content = My_Doc_Form.cleaned_data['content']
-			sentiment = cal.c(author,content)
-			p = Document(author = author,
+			#print(author,content)
+			sentiment = sentiment_analysis.preprocessing_algo(author,content)
+			var_doc = Document(author = author,
 						content = content,
 						sentiment = sentiment)
-			p.save()
+			var_doc.save()
 	else:
 		My_Doc_Form = Doc_Form()
 	
-	return render(request, 'Historie/index.html',{"content":content,"sentiment":sentiment })
-
+	return render(request, 'Historie/index.html',{"author" :author ,"content":content,"sentiment":sentiment })
 def home(request):
 	return render(request,'Historie/Home.html',)
